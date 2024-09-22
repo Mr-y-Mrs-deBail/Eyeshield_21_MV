@@ -1,0 +1,96 @@
+body {
+    background: #000;
+}
+
+.container {
+    margin-bottom: 1rem;
+}
+
+.texto1 {
+    max-width: 23%;
+    height: auto; 
+}
+
+#mvplayer {
+    text-align: center;
+    position: relative;
+    top: -20px;
+}
+
+#mvplayer video {
+    width: 43%;
+    height: auto;
+    margin: 0 auto;
+}
+
+.btnCap {
+    background-color: orangered;
+    border-color: white;
+    color: black;
+}
+
+.btnCap:hover {
+    box-shadow: 0 0 10px orange;
+}
+
+
+#mvplaylist {
+    text-align: left;
+    font-size: 14px;
+    font-family: 'Arial', Helvetica, sans-serif;
+    margin-top: 2px;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+#mvplaylist li {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#mvplaylist li a {
+    color: white;
+    background: #232323;
+    padding: 7px 50px; 
+    display: block;
+    text-decoration: none;
+    text-align: left;
+}
+
+#mvplaylist li a:hover {
+    background: yellow;
+    color: #000;
+    text-decoration: none;
+}
+
+#mvplaylist .active a {
+    color: white;
+    font-style: Georgia;
+}
+
+#mvplaylist .active a:before {
+    content: "\25B6";
+    color: orangered;
+    font-style: normal;
+    padding-right: 8px;
+}
+
+#mvplaylist .active a:hover {
+    color: #000;
+}
+
+
+@media (max-width: 767px) {
+
+    .texto1 {
+        max-width: 63%;
+    }
+
+    #mvplayer video {
+        width: 95%; 
+        height: 95%; 
+    }
+}
