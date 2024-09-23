@@ -9,7 +9,6 @@
 </head>
 
 <body>
-   
     <div class="container mt-5 text-center">
         <img class="texto1" src="img/titulo.png" alt="">
     </div>
@@ -28,63 +27,38 @@
             </button>
             
             <div id="mvplaylist" class="collapse">
-                <ul class="list-unstyled">
-                    <li class="active"><a href="#" onclick="sendCommand('01.mp4')">Capítulo 1</a></li>
-                    <li><a href="#" onclick="sendCommand('02.mp4')">Capítulo 2</a></li>
-                    <li><a href="#" onclick="sendCommand('03.mp4')">Capítulo 3</a></li>
-                    <li><a href="#" onclick="sendCommand('04.mp4')">Capítulo 4</a></li>
-                    <li><a href="#" onclick="sendCommand('05.mp4')">Capítulo 5</a></li>
+                <ul class="list-unstyled" id="playlist">
+                    <li class="active"><a href="#" onclick="changeVideo('video/01.mp4', this)">Capítulo 1</a></li>
+                    <li><a href="#" onclick="changeVideo('video/02.mp4', this)">Capítulo 2</a></li>
+                    <li><a href="#" onclick="changeVideo('video/03.mp4', this)">Capítulo 3</a></li>
+                    <li><a href="#" onclick="changeVideo('video/04.mp4', this)">Capítulo 4</a></li>
+                    <li><a href="#" onclick="changeVideo('video/05.mp4', this)">Capítulo 5</a></li>
                 </ul>
             </div>
         </div>
     </div>
 
-    <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const socket = new WebSocket('ws://localhost:8080');
+        function changeVideo(fileName, element) {
             const videoPlayer = document.getElementById('videoPlayer');
             const videoSource = document.getElementById('videoSource');
+            videoSource.src = fileName;
+            videoPlayer.load();
+            videoPlayer.play();
 
-            socket.addEventListener('message', event => {
-                const data = JSON.parse(event.data);
+            // Remove 'active' class from all list items
+            const items = document.querySelectorAll('#playlist li');
+            items.forEach(item => item.classList.remove('active'));
 
-                if (data.type === 'video') {
-                    if (data.action === 'play') {
-                        videoPlayer.play();
-                    } else if (data.action === 'pause') {
-                        videoPlayer.pause();
-                    } else if (data.action === 'seek') {
-                        videoPlayer.currentTime = data.time;
-                    } else if (data.action === 'load') {
-                        videoSource.src = 'video/' + data.fileName;
-                        videoPlayer.load();
-                    }
-                }
-            });
-
-            videoPlayer.addEventListener('play', () => {
-                socket.send(JSON.stringify({ type: 'video', action: 'play' }));
-            });
-
-            videoPlayer.addEventListener('pause', () => {
-                socket.send(JSON.stringify({ type: 'video', action: 'pause' }));
-            });
-
-            videoPlayer.addEventListener('seeked', () => {
-                socket.send(JSON.stringify({ type: 'video', action: 'seek', time: videoPlayer.currentTime }));
-            });
-        });
-
-        function sendCommand(fileName) {
-            const socket = new WebSocket('ws://localhost:8080');
-            socket.addEventListener('open', () => {
-                socket.send(JSON.stringify({ type: 'video', action: 'load', fileName: fileName }));
-            });
+            // Add 'active' class to the clicked list item
+            element.parentElement.classList.add('active');
         }
     </script>
+
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
+
 </html>
+
