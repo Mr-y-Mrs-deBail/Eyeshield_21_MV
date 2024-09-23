@@ -9,6 +9,7 @@
 </head>
 
 <body>
+    
     <div class="container mt-5 text-center">
         <img class="texto1" src="img/titulo.png" alt="">
     </div>
@@ -28,11 +29,11 @@
             
             <div id="mvplaylist" class="collapse">
                 <ul class="list-unstyled" id="playlist">
-                    <li class="active"><a href="#" onclick="changeVideo('video/01.mp4', this)">Capítulo 1</a></li>
-                    <li><a href="#" onclick="changeVideo('video/02.mp4', this)">Capítulo 2</a></li>
-                    <li><a href="#" onclick="changeVideo('video/03.mp4', this)">Capítulo 3</a></li>
+                    <li class="active"><a href="#" onclick="changeVideo('video/03.mp4', this)">Capítulo 3</a></li>
                     <li><a href="#" onclick="changeVideo('video/04.mp4', this)">Capítulo 4</a></li>
                     <li><a href="#" onclick="changeVideo('video/05.mp4', this)">Capítulo 5</a></li>
+                    <li><a href="#" onclick="changeVideo('video/06.mp4', this)">Capítulo 6</a></li>
+                    <li><a href="#" onclick="changeVideo('video/07.mp4', this)">Capítulo 7</a></li>
                 </ul>
             </div>
         </div>
@@ -46,11 +47,9 @@
             videoPlayer.load();
             videoPlayer.play();
 
-            // Remove 'active' class from all list items
             const items = document.querySelectorAll('#playlist li');
             items.forEach(item => item.classList.remove('active'));
 
-            // Add 'active' class to the clicked list item
             element.parentElement.classList.add('active');
         }
     </script>
@@ -58,6 +57,7 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    
 </body>
 
 </html>
