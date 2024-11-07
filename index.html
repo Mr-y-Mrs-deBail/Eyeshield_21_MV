@@ -11,7 +11,8 @@
 <body>
     
     <div class="container mt-5 text-center">
-        <img class="texto1" src="img/titulo.png" alt="">
+        <img id="tituloImagen" class="texto1" src="img/titulo.png" alt="">
+        <div><img id="Imagen02" class="Imagen02" src="img/titulo02.gif" alt=""></div>
     </div>
 
     <div id="mvplayer" class="container mt-5">
@@ -34,10 +35,15 @@
                     <li><a href="#" onclick="changeVideo('video/35.mp4', this)">Capítulo 35</a></li>
                     <li><a href="#" onclick="changeVideo('video/36.mp4', this)">Capítulo 36</a></li>
                     <li><a href="#" onclick="changeVideo('video/37.mp4', this)">Capítulo 37</a></li>
+                    <li><a href="#" onclick="changeVideo('video/13.mp4', this); changeTitleImage('img/titulo2.png', '420px', 'auto');">Capítulo 13 <img class="koro" src="img/koro.gif" alt="koro"></a></li>            
                 </ul>
             </div>
         </div>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
     <script>
         function changeVideo(fileName, element) {
@@ -54,9 +60,41 @@
         }
     </script>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+        function changeVideo(src, element) {
+            const videoPlayer = document.getElementById('videoPlayer');
+            const videoSource = document.getElementById('videoSource');
+            videoSource.src = src;
+            videoPlayer.load();
+            videoPlayer.play();
+            
+            const items = document.querySelectorAll('#playlist li');
+            items.forEach(item => item.classList.remove('active'));
+            
+            element.parentElement.classList.add('active');
+            
+            const Imagen02 = document.getElementById('Imagen02');
+            Imagen02.style.opacity = '0';
+            
+            // Restablecer la imagen del título inicial
+            const tituloImagen = document.getElementById('tituloImagen');
+            tituloImagen.src = 'img/titulo.png';
+            tituloImagen.style.width = 'initial'; 
+            tituloImagen.style.height = 'initial';
+            
+            if (src === 'video/13.mp4') {
+                Imagen02.style.opacity = '1';
+            }
+        }
+        
+        function changeTitleImage(newSrc, newWidth, newHeight) {
+            const tituloImagen = document.getElementById('tituloImagen');
+            tituloImagen.src = newSrc;
+            tituloImagen.style.width = newWidth; 
+            tituloImagen.style.height = newHeight;
+        }
+
+    </script>
     
 </body>
 
