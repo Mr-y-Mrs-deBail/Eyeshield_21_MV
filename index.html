@@ -20,7 +20,10 @@
             <source id="videoSource" src="video/01.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
-    </div>
+        <div class="d-flex justify-content-center align-items-center" style="height: auto; width: 100%;">
+            <iframe id="youtubeVideo" width="560" height="315" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="display: none;"></iframe>
+        </div>
+            </div>
 
     <div class="container mt-3">
         <div class="d-flex flex-column align-items-center">
@@ -30,9 +33,12 @@
             
             <div id="mvplaylist" class="collapse">
                 <ul class="list-unstyled" id="playlist">
-                    <li class="active"><a href="#" onclick="changeVideo('video/35.mp4', this)">Capítulo 35</a></li>
-                    <li><a href="#" onclick="changeVideo('video/36.mp4', this)">Capítulo 36</a></li>
-                    <li><a href="#" onclick="changeVideo('video/37.mp4', this)">Capítulo 37</a></li>
+                    <li class="active"><a href="#" onclick="changeVideo('video/38.mp4', this)">Capítulo 38</a></li>
+                    <li><a href="#" onclick="changeVideo('video/39.mp4', this)">Capítulo 39</a></li>
+                    <li><a href="#" onclick="changeVideo('video/40.mp4', this)">Capítulo 40</a></li>
+                    <li><a href="#" onclick="changeVideo('video/41.mp4', this)">Capítulo 41</a></li>
+                    <li><a href="#" onclick="changeVideo('video/42.mp4', this)">Capítulo 42</a></li>
+                    <li><a href="#" id="showVideoBtn">Capítulo 13 <img class="koro" src="img/koro.gif" alt="koro"></a></li>                    
                     <li><a href="#" onclick="changeVideo('video/14.mp4', this); changeTitleImage('img/titulo2.png', '420px', 'auto');">Capítulo 14 <img class="koro" src="img/koro.gif" alt="koro"></a></li>
                 </ul>
             </div>
@@ -44,57 +50,64 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
     <script>
-        function changeVideo(fileName, element) {
+        function changeVideo(fileName, element, isYouTube = false) {
             const videoPlayer = document.getElementById('videoPlayer');
             const videoSource = document.getElementById('videoSource');
-            videoSource.src = fileName;
-            videoPlayer.load();
-            videoPlayer.play();
-
+            const youtubeVideo = document.getElementById('youtubeVideo');
+    
+            if (isYouTube) {
+                videoPlayer.style.display = 'none';
+                youtubeVideo.style.display = 'block';
+                youtubeVideo.src = fileName;
+                
+                if (window.innerWidth < 768) { // Para móviles
+                    youtubeVideo.style.width = '240px';
+                    youtubeVideo.style.height = 'auto';
+                } else { // Para laptops y computadoras
+                    youtubeVideo.style.width = '350px';
+                    youtubeVideo.style.height = 'auto';
+                }
+            } else {
+                videoPlayer.style.display = 'block';
+                youtubeVideo.style.display = 'none';
+                youtubeVideo.src = '';
+                videoSource.src = fileName;
+                videoPlayer.load();
+                videoPlayer.play();
+            }
+    
             const items = document.querySelectorAll('#playlist li');
             items.forEach(item => item.classList.remove('active'));
-
-            element.parentElement.classList.add('active');
-        }
-    </script>
-
-    <script>
-        function changeVideo(src, element) {
-            const videoPlayer = document.getElementById('videoPlayer');
-            const videoSource = document.getElementById('videoSource');
-            videoSource.src = src;
-            videoPlayer.load();
-            videoPlayer.play();
-            
-            const items = document.querySelectorAll('#playlist li');
-            items.forEach(item => item.classList.remove('active'));
-            
+    
             element.parentElement.classList.add('active');
             
             const Imagen02 = document.getElementById('Imagen02');
             Imagen02.style.opacity = '0';
             
-            // Restablecer la imagen del título inicial
             const tituloImagen = document.getElementById('tituloImagen');
             tituloImagen.src = 'img/titulo.png';
             tituloImagen.style.width = 'initial'; 
             tituloImagen.style.height = 'initial';
             
-            if (src === 'video/14.mp4') {
+            if (fileName === 'https://www.youtube.com/embed/NRlpJm7QYgY?si=rpvnOPr3gZMtmj_t') {
                 Imagen02.style.opacity = '1';
+                changeTitleImage('img/titulo2.png', '420px', 'auto');
             }
         }
-        
+    
         function changeTitleImage(newSrc, newWidth, newHeight) {
             const tituloImagen = document.getElementById('tituloImagen');
             tituloImagen.src = newSrc;
             tituloImagen.style.width = newWidth; 
             tituloImagen.style.height = newHeight;
         }
-
+    
+        document.getElementById('showVideoBtn').addEventListener('click', function(event) {
+            event.preventDefault();
+            changeVideo('https://www.youtube.com/embed/NRlpJm7QYgY?si=rpvnOPr3gZMtmj_t', this, true);
+        });
     </script>
     
 </body>
-
 </html>
 
