@@ -95,10 +95,10 @@ body {
         transform: translate(0, 0);
     }
     25% {
-        transform: translate(180px, 20px);
+        transform: translate(80px, 20px);
     }
     50% {
-        transform: translate(-250px, 20px);
+        transform: translate(-230px, 20px);
     }
     75% {
         transform: translate(0, 20px);
