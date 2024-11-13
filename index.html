@@ -33,12 +33,12 @@
             
             <div id="mvplaylist" class="collapse">
                 <ul class="list-unstyled" id="playlist">
-                    <li class="active"><a href="#" onclick="changeVideo('video/38.mp4', this)">Capítulo 38</a></li>
-                    <li><a href="#" onclick="changeVideo('video/39.mp4', this)">Capítulo 39</a></li>
-                    <li><a href="#" onclick="changeVideo('video/40.mp4', this)">Capítulo 40</a></li>
-                    <li><a href="#" onclick="changeVideo('video/41.mp4', this)">Capítulo 41</a></li>
+                    <li class="active"><a href="#" onclick="changeVideo('video/41.mp4', this)">Capítulo 41</a></li>
                     <li><a href="#" onclick="changeVideo('video/42.mp4', this)">Capítulo 42</a></li>
-                    <li><a href="#" id="showVideoBtn">Capítulo 13 <img class="koro" src="img/koro.gif" alt="koro"></a></li>                    
+                    <li><a href="#" onclick="changeVideo('video/43.mp4', this)">Capítulo 43</a></li>
+                    <li><a href="#" onclick="changeVideo('video/44.mp4', this)">Capítulo 44</a></li>
+                    <li><a href="#" onclick="changeVideo('video/45.mp4', this)">Capítulo 45</a></li>
+                    <li><a href="#" id="showVideoBtn">Capítulo 14 <img class="koro" src="img/koro.gif" alt="koro"></a></li>                    
                 </ul>
             </div>
         </div>
@@ -53,19 +53,20 @@
             const videoPlayer = document.getElementById('videoPlayer');
             const videoSource = document.getElementById('videoSource');
             const youtubeVideo = document.getElementById('youtubeVideo');
-    
+            
             if (isYouTube) {
                 videoPlayer.style.display = 'none';
                 youtubeVideo.style.display = 'block';
                 youtubeVideo.src = fileName;
                 
-                if (window.innerWidth < 768) { // Para móviles
+                if (window.innerWidth < 768) {
                     youtubeVideo.style.width = '300px';
                     youtubeVideo.style.height = 'auto';
-                } else { // Para laptops y computadoras
-                    youtubeVideo.style.width = '350px';
-                    youtubeVideo.style.height = 'auto';
+                } else {
+                    youtubeVideo.style.width = '560px';
+                    youtubeVideo.style.height = '315px';
                 }
+            
             } else {
                 videoPlayer.style.display = 'block';
                 youtubeVideo.style.display = 'none';
@@ -74,10 +75,9 @@
                 videoPlayer.load();
                 videoPlayer.play();
             }
-    
+            
             const items = document.querySelectorAll('#playlist li');
             items.forEach(item => item.classList.remove('active'));
-    
             element.parentElement.classList.add('active');
             
             const Imagen02 = document.getElementById('Imagen02');
@@ -85,25 +85,25 @@
             
             const tituloImagen = document.getElementById('tituloImagen');
             tituloImagen.src = 'img/titulo.png';
-            tituloImagen.style.width = 'initial'; 
+            tituloImagen.style.width = 'initial';
             tituloImagen.style.height = 'initial';
             
-            if (fileName === 'https://www.youtube.com/embed/NRlpJm7QYgY?si=rpvnOPr3gZMtmj_t') {
+            if (fileName === 'https://www.youtube.com/embed/hErpaTY3Z4g?si=6ciGlMjGSkqj2zZR') {
                 Imagen02.style.opacity = '1';
                 changeTitleImage('img/titulo2.png', '420px', 'auto');
             }
         }
-    
+        
         function changeTitleImage(newSrc, newWidth, newHeight) {
             const tituloImagen = document.getElementById('tituloImagen');
             tituloImagen.src = newSrc;
-            tituloImagen.style.width = newWidth; 
+            tituloImagen.style.width = newWidth;
             tituloImagen.style.height = newHeight;
         }
-    
+        
         document.getElementById('showVideoBtn').addEventListener('click', function(event) {
             event.preventDefault();
-            changeVideo('https://www.youtube.com/embed/NRlpJm7QYgY?si=rpvnOPr3gZMtmj_t', this, true);
+            changeVideo('https://www.youtube.com/embed/hErpaTY3Z4g?si=6ciGlMjGSkqj2zZR', this, true);
         });
     </script>
     
