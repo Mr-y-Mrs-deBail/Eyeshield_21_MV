@@ -1,0 +1,138 @@
+body {
+    background: #000;
+}
+
+.container {
+    margin-bottom: 1rem;
+}
+
+.texto1 {
+    max-width: 23%;
+    height: auto; 
+}
+
+#mvplayer {
+    text-align: center;
+    position: relative;
+    top: -20px;
+}
+
+#mvplayer video {
+    width: 43%;
+    height: auto;
+    margin: 0 auto;
+}
+
+.btnCap {
+    background-color: orangered;
+    border-color: white;
+    color: black;
+}
+
+.btnCap:hover {
+    box-shadow: 0 0 10px orange;
+}
+
+#mvplaylist {
+    text-align: left;
+    font-size: 14px;
+    font-family: 'Arial', Helvetica, sans-serif;
+    margin-top: 2px;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+#mvplaylist li {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#mvplaylist li a {
+    color: white;
+    background: #232323;
+    padding: 7px 50px; 
+    display: block;
+    text-decoration: none;
+    text-align: left;
+}
+
+#mvplaylist li a:hover {
+    background: yellow;
+    color: #000;
+    text-decoration: none;
+}
+
+#mvplaylist .active a {
+    color: white;
+    font-style: Georgia;
+}
+
+#mvplaylist .active a:before {
+    content: "\25B6";
+    color: orangered;
+    font-style: normal;
+    padding-right: 8px;
+}
+
+#mvplaylist .active a:hover {
+    color: #000;
+}
+
+.Imagen02 { 
+    width: 120px;
+    margin-top: -60px;
+    animation: move 10s infinite linear;
+    opacity: 0;
+    position: absolute; 
+    z-index: -1;
+}
+
+@keyframes move {
+    0% {
+        transform: translate(0, 0);
+    }
+    25% {
+        transform: translate(80px, 20px);
+    }
+    50% {
+        transform: translate(-230px, 20px);
+    }
+    75% {
+        transform: translate(0, 20px);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+.koro {
+    width: 25px;
+    animation: moveSideToSide 2s infinite linear;
+}
+
+@keyframes moveSideToSide {
+    0% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(10px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@media (max-width: 767px) {
+
+    .texto1 {
+        max-width: 63%;
+    }
+
+    #mvplayer video {
+        width: 95%; 
+        height: 95%; 
+    }
+}

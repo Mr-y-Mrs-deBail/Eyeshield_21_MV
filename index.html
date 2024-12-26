@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Eyeshield 21</title>
+</head>
+
+<body>
+    
+    <div class="container mt-5 text-center">
+        <img id="tituloImagen" class="texto1" src="img/titulo.png" alt="">
+        <div><img id="Imagen02" class="Imagen02" src="img/titulo02.gif" alt=""></div>
+    </div>
+
+    <div id="mvplayer" class="container mt-5">
+        <video id="videoPlayer" width="600" controls>
+            <source id="videoSource" src="video/01.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="d-flex justify-content-center align-items-center" style="height: auto; width: 100%;">
+            <iframe id="youtubeVideo" width="560" height="315" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="display: none;"></iframe>
+        </div>
+            </div>
+
+    <div class="container mt-3">
+        <div class="d-flex flex-column align-items-center">
+            <button class="btn btnCap mb-3" type="button" data-toggle="collapse" data-target="#mvplaylist" aria-expanded="false" aria-controls="mvplaylist">
+                Mostrar/Ocultar Capítulos
+            </button>
+            
+            <div id="mvplaylist" class="collapse">
+                <ul class="list-unstyled" id="playlist">
+                    <li class="active"><a href="#" onclick="changeVideo('video/57.mp4', this)">Capítulo 57</a></li>
+                    <li><a href="#" onclick="changeVideo('video/58.mp4', this)">Capítulo 58</a></li>
+                    <li><a href="#" onclick="changeVideo('video/59.mp4', this)">Capítulo 59</a></li>
+                    <li><a href="#" onclick="changeVideo('video/60.mp4', this)">Capítulo 60</a></li>
+                    <li><a href="#" onclick="changeVideo('video/61.mp4', this)">Capítulo 61</a></li>
+                    <li><a href="#" onclick="changeVideo('video/62.mp4', this)">Capítulo 62</a></li>
+                    <li><a href="#" id="showVideoBtn">Capítulo 14 <img class="koro" src="img/koro.gif" alt="koro"></a></li>                    
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <script>
+        function changeVideo(fileName, element, isYouTube = false) {
+            const videoPlayer = document.getElementById('videoPlayer');
+            const videoSource = document.getElementById('videoSource');
+            const youtubeVideo = document.getElementById('youtubeVideo');
+            
+            if (isYouTube) {
+                videoPlayer.style.display = 'none';
+                youtubeVideo.style.display = 'block';
+                youtubeVideo.src = fileName;
+                
+                if (window.innerWidth < 768) {
+                    youtubeVideo.style.width = '300px';
+                    youtubeVideo.style.height = 'auto';
+                } else {
+                    youtubeVideo.style.width = '560px';
+                    youtubeVideo.style.height = '315px';
+                }
+            
+            } else {
+                videoPlayer.style.display = 'block';
+                youtubeVideo.style.display = 'none';
+                youtubeVideo.src = '';
+                videoSource.src = fileName;
+                videoPlayer.load();
+                videoPlayer.play();
+            }
+            
+            const items = document.querySelectorAll('#playlist li');
+            items.forEach(item => item.classList.remove('active'));
+            element.parentElement.classList.add('active');
+            
+            const Imagen02 = document.getElementById('Imagen02');
+            Imagen02.style.opacity = '0';
+            
+            const tituloImagen = document.getElementById('tituloImagen');
+            tituloImagen.src = 'img/titulo.png';
+            tituloImagen.style.width = 'initial';
+            tituloImagen.style.height = 'initial';
+            
+            if (fileName === 'https://www.youtube.com/embed/hErpaTY3Z4g?si=6ciGlMjGSkqj2zZR') {
+                Imagen02.style.opacity = '1';
+                changeTitleImage('img/titulo2.png', '420px', 'auto');
+            }
+        }
+        
+        function changeTitleImage(newSrc, newWidth, newHeight) {
+            const tituloImagen = document.getElementById('tituloImagen');
+            tituloImagen.src = newSrc;
+            tituloImagen.style.width = newWidth;
+            tituloImagen.style.height = newHeight;
+        }
+        
+        document.getElementById('showVideoBtn').addEventListener('click', function(event) {
+            event.preventDefault();
+            changeVideo('https://www.youtube.com/embed/hErpaTY3Z4g?si=6ciGlMjGSkqj2zZR', this, true);
+        });
+    </script>
+
+</body>
+</html>
+
