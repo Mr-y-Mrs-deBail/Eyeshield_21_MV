@@ -37,11 +37,13 @@
                     <li><a href="#" onclick="changeVideo('video/58.mp4', this)">Capítulo 58</a></li>
                     <li><a href="#" onclick="changeVideo('video/59.mp4', this)">Capítulo 59</a></li>
                     <li><a href="#" onclick="changeVideo('video/60.mp4', this)">Capítulo 60</a></li>
-                    <li><a href="#" onclick="changeVideo('video/61.mp4', this)">Capítulo 61</a></li>
-                    <li><a href="#" onclick="changeVideo('video/62.mp4', this)">Capítulo 62</a></li>
-                    <li><a href="#" id="showVideoBtn">Capítulo 14 <img class="koro" src="img/koro.gif" alt="koro"></a></li>                    
+                    <li><a href="#" onclick="changeVideo('https://drive.google.com/file/d/15ttYKB99UqJg7YuoktURhyZRy6fNY2sN/preview', this, true)">Capítulo 61</a></li>
+                    <li><a href="#" onclick="changeVideo('https://drive.google.com/file/d/1H5_N5NIDEnu6q80W8e4IW71e0Oqd_HPh/preview', this, true)">Capítulo 62</a></li>
+                    <li><a href="#" id="showVideoBtn">Capítulo 14 <img class="koro" src="img/koro.gif" alt="koro"></a></li>
                 </ul>
             </div>
+            
+            
         </div>
     </div>
 
@@ -55,7 +57,7 @@
             const videoSource = document.getElementById('videoSource');
             const youtubeVideo = document.getElementById('youtubeVideo');
             
-            if (isYouTube) {
+            if (isYouTube || fileName.includes('drive.google.com')) {
                 videoPlayer.style.display = 'none';
                 youtubeVideo.style.display = 'block';
                 youtubeVideo.src = fileName;
@@ -67,7 +69,6 @@
                     youtubeVideo.style.width = '560px';
                     youtubeVideo.style.height = '315px';
                 }
-            
             } else {
                 videoPlayer.style.display = 'block';
                 youtubeVideo.style.display = 'none';
@@ -94,18 +95,19 @@
                 changeTitleImage('img/titulo2.png', '420px', 'auto');
             }
         }
-        
+    
         function changeTitleImage(newSrc, newWidth, newHeight) {
             const tituloImagen = document.getElementById('tituloImagen');
             tituloImagen.src = newSrc;
             tituloImagen.style.width = newWidth;
             tituloImagen.style.height = newHeight;
         }
-        
+    
         document.getElementById('showVideoBtn').addEventListener('click', function(event) {
             event.preventDefault();
             changeVideo('https://www.youtube.com/embed/hErpaTY3Z4g?si=6ciGlMjGSkqj2zZR', this, true);
         });
+
     </script>
 
 </body>
